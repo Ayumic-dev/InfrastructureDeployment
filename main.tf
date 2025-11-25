@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "yusuf-jenkins"
+    bucket = "ayumic-jenkins"
     key    = "newresource.tfstate"
     region = "us-east-1"
   }
@@ -99,12 +99,12 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
   ip_protocol       = "-1" # semantically equivalent to all ports
 }
 resource "aws_instance" "foo" {
-  ami           = "ami-04b70fa74e45c3917" # us-west-2
+  ami           = "ami-0a4cba7cb69464af8" # us-east-1
   instance_type = "t2.micro"
   subnet_id = aws_subnet.demo_subnet.id
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
   availability_zone = "us-east-1a"
-  key_name = "devopskeypair"
+  key_name = "mykp"
   count = 5
 
   tags = {
@@ -113,3 +113,4 @@ resource "aws_instance" "foo" {
 
 
 }
+
